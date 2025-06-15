@@ -1,0 +1,493 @@
+/* style.css - スマート・アシスト コンセプト */
+
+:root {
+    --primary-color: #007bff;
+    /* 1. メインカラー: ブルー */
+    --secondary-color: #ff8c00;
+    /* 2. アクセント1: オレンジ */
+    --accent-gray-color: #6c757d;
+    /* 3. アクセント2: グレー */
+    --highlight-green-color: #28a745;
+    /* 4. ハイライト: グリーン */
+
+    --text-color: #212529;
+    --light-text-color: #495057;
+    --bg-color: #f8f9fa;
+    --card-bg-color: #ffffff;
+    --border-color: #dee2e6;
+    --hover-bg-color: #e9ecef;
+    /* オプションホバー用 */
+    --disabled-color: #adb5bd;
+
+    --font-family: 'Noto Sans JP', sans-serif;
+    --base-font-size: 16px;
+    --line-height-base: 1.7;
+    /* 少しゆとりを */
+
+    --border-radius-sm: 0.2rem;
+    /* 3.2px */
+    --border-radius-md: 0.4rem;
+    /* 6.4px */
+    --border-radius-lg: 0.8rem;
+    /* 12.8px */
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* --- 基本スタイル --- */
+body {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 700px;
+    /* 少しコンパクトに */
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- ヘッダー --- */
+header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 1.9rem;
+    /* 少し調整 */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.5px;
+    /* 少し詰めてモダンに */
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--light-text-color);
+}
+
+/* --- セクション制御 --- */
+.section {
+    display: none;
+    padding-top: 1rem;
+}
+
+.section.active {
+    display: block;
+    animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* イージング変更 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- プログレスバー --- */
+.progress-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    /* 8px, 少し細く */
+    background-color: var(--hover-bg-color);
+    border-radius: var(--border-radius-lg);
+    /* バー自体も角丸に */
+    overflow: hidden;
+}
+
+.progress-indicator {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-lg);
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#questionNumber {
+    text-align: right;
+    font-size: 0.8rem;
+    /* 12.8px */
+    color: var(--accent-gray-color);
+    margin-top: 0.4rem;
+    font-weight: 500;
+}
+
+/* --- 質問スライドの基本表示制御 --- */
+.question-slide {
+    display: none;
+}
+
+.question-slide.active {
+    display: block;
+}
+
+/* --- 質問内容 --- */
+.question-slide h2 {
+    font-size: 1.4rem;
+    /* 22.4px */
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.8rem;
+    /* 余白調整 */
+    text-align: center;
+    line-height: 1.4;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* スマホも考慮し、基本1列 */
+    gap: 0.8rem;
+    /* 12.8px */
+}
+
+@media (min-width: 600px) {
+
+    /* 幅が600px以上で2列 */
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+.option {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.25rem 1rem;
+    /* パディング調整 */
+    display: flex;
+    /* アイコンとテキストを横並び */
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* transform削除 */
+    box-shadow: var(--shadow-sm);
+}
+
+.option:hover {
+    border-color: var(--primary-color);
+    /* ホバーはメインカラーで統一感 */
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.1);
+}
+
+.option.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+}
+
+.option.selected .option-icon,
+.option.selected .option-text {
+    color: white;
+}
+
+.option-icon {
+    font-size: 1.8rem;
+    /* アイコンサイズ調整 */
+    margin-right: 1rem;
+    /* アイコンとテキストの間 */
+    color: var(--primary-color);
+    flex-shrink: 0;
+    /* アイコンが縮まないように */
+    width: 2em;
+    /* アイコンの占有幅を固定気味に */
+    text-align: center;
+}
+
+.option-text {
+    font-size: 0.95rem;
+    /* テキストサイズ調整 */
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* --- ナビゲーションボタン --- */
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    /* 中央寄せ */
+    margin-top: 2.5rem;
+}
+
+.nav-btn {
+    background-color: var(--accent-gray-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: var(--border-radius-md);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nav-btn:disabled {
+    background-color: var(--disabled-color);
+    cursor: not-allowed;
+}
+
+.nav-btn:not(:disabled):hover {
+    background-color: #5a6268;
+}
+
+/* --- 結果セクション --- */
+.result-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.result-header h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.result-header p {
+    /* メインクラスタ表示 */
+    font-size: 1.05rem;
+    color: var(--light-text-color);
+    margin-bottom: 1.2rem;
+}
+
+.result-header p strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.result-summary {
+    background-color: var(--primary-color);
+    /* background: linear-gradient(135deg, var(--primary-color), #0056b3); */
+    /* グラデも可 */
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.2);
+}
+
+.time-saved-label {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 0.3rem;
+    opacity: 0.9;
+    /* 少し透明度を */
+}
+
+.time-saved-value {
+    font-size: 2.5rem;
+    /* 大きく */
+    font-weight: 700;
+    line-height: 1;
+    margin: 0.2rem 0;
+    /* 上下少し余白 */
+}
+
+.result-details h3 {
+    /* 活用事例リストの上の汎用的なh3 (診断ツール内) */
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.use-cases-list h4 {
+    /* JSで動的に追加される見出し */
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    color: var(--secondary-color);
+    /* オレンジ */
+    font-weight: 600;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.4rem;
+    display: inline-block;
+    /* 下線がテキスト幅になるように */
+}
+
+.use-cases-list h4:first-child {
+    margin-top: 0;
+}
+
+.use-case-item {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease;
+    /* ホバー時のborder-leftは削除、代わりに影を少しつける */
+}
+
+.use-case-item:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.use-case-description {
+    flex-grow: 1;
+    margin-right: 1rem;
+    font-size: 0.95rem;
+    /* 少し大きく */
+    line-height: 1.5;
+}
+
+.time-saved {
+    font-weight: 600;
+    color: var(--highlight-green-color);
+    /* グリーン */
+    font-size: 0.95rem;
+    white-space: nowrap;
+    background-color: #e9f5ec;
+    /* グリーンの薄い背景 */
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+/* --- 結果アクションボタン --- */
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.share-btn,
+.restart-btn {
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.share-btn:hover,
+.restart-btn:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.share-btn {
+    background-color: #1DA1F2;
+    /* Twitter Blue */
+}
+
+.share-btn:hover {
+    background-color: #0c85d0;
+}
+
+.share-btn svg {
+    fill: white;
+    width: 1em;
+    height: 1em;
+}
+
+.restart-btn {
+    background-color: var(--secondary-color);
+    /* オレンジ */
+}
+
+.restart-btn:hover {
+    background-color: #e67e00;
+}
+
+/* --- フッター --- */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: var(--accent-gray-color);
+}
+
+/* --- レスポンシブ調整 --- */
+@media (max-width: 480px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .option {
+        /* スマホではアイコンとテキストを縦に戻すことも検討 */
+        /* flex-direction: column; */
+        /* align-items: center; */
+        /* text-align: center; */
+    }
+
+    .option-icon {
+        /* margin-right: 0; */
+        /* margin-bottom: 0.5rem; */
+    }
+
+    .result-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .share-btn,
+    .restart-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .use-case-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .time-saved {
+        align-self: flex-start;
+        margin-top: 0.3rem;
+    }
+}

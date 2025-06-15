@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AI活用 業務時間短縮診断ツール</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>生成AI活用 業務時間短縮診断ツール</h1>
+            <p class="subtitle">あなたの業務にぴったりの生成AI活用法がわかります</p>
+        </header>
+
+        <main>
+            <div id="questionnaireSection" class="section active">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressIndicator" class="progress-indicator"></div>
+                    </div>
+                    <div id="questionNumber">質問 1/5</div>
+                </div>
+
+                <div id="questionsContainer">
+                    <!-- Q1: あなたの職種はどれに分類される？ -->
+                    <div class="question-slide active" id="q1">
+                        <h2>Q1: あなたの職種はどれに分類されますか？</h2>
+                        <div class="options-grid">
+                            <div class="option" data-value="corporate">
+                                <div class="option-icon">🏢</div>
+                                <div class="option-text">A. 事務・経理・人事</div>
+                            </div>
+                            <div class="option" data-value="tech_rd">
+                                <div class="option-icon">🔬</div>
+                                <div class="option-text">B. エンジニア・研究者・技術職</div>
+                            </div>
+                            <div class="option" data-value="human_service">
+                                <div class="option-icon">🧑‍⚕️</div>
+                                <div class="option-text">C. 医療・教育・福祉</div>
+                            </div>
+                            <div class="option" data-value="business_customer">
+                                <div class="option-icon">📈</div>
+                                <div class="option-text">D. 営業・マーケティング・接客</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2: あなたの業務はどれに分類される？ -->
+                    <div class="question-slide" id="q2">
+                        <h2>Q2: あなたの業務はどれに分類されますか？</h2>
+                        <div class="options-grid" id="q2Options">
+                            <!-- 動的に生成されるQ2オプション -->
+                        </div>
+                    </div>
+
+                    <!-- Q3: あなたの業務に関する特徴は？ -->
+                    <div class="question-slide" id="q3">
+                        <h2>Q3: あなたの業務の特徴はどれが近しいですか？</h2>
+                        <div class="options-grid">
+                            <div class="option" data-value="routine_manual">
+                                <div class="option-icon">🔄</div>
+                                <div class="option-text">A. ルーチンワークが多く、手順書やマニュアルが整備されている</div>
+                            </div>
+                            <div class="option" data-value="semi_routine_flexible">
+                                <div class="option-icon">🧩</div>
+                                <div class="option-text">B. 一部定型作業があるが、状況に応じた対応が求められる</div>
+                            </div>
+                            <div class="option" data-value="highly_flexible">
+                                <div class="option-icon">🧠</div>
+                                <div class="option-text">C. ほとんど自分で考え、柔軟に対応している</div>
+                            </div>
+                            <div class="option" data-value="process_oriented">
+                                <div class="option-icon">📊</div>
+                                <div class="option-text">D. 業務フローが明確で、プロセスに沿って進めることが重要</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4: 業務の効率化に最も必要だと感じることは何ですか？ -->
+                    <div class="question-slide" id="q4">
+                        <h2>Q4: 業務の効率化に最も必要だと感じることは何ですか？</h2>
+                        <div class="options-grid">
+                            <div class="option" data-value="automation">
+                                <div class="option-icon">🤖</div>
+                                <div class="option-text">A. 定型作業の省力化、データ処理の自動化など</div>
+                            </div>
+                            <div class="option" data-value="communication">
+                                <div class="option-icon">💬</div>
+                                <div class="option-text">B. チーム間の情報共有、顧客対応の改善など</div>
+                            </div>
+                            <div class="option" data-value="data_utilization">
+                                <div class="option-icon">📉</div>
+                                <div class="option-text">C. 売上分析、顧客データの解析など</div>
+                            </div>
+                            <div class="option" data-value="creative_design">
+                                <div class="option-icon">🎨</div>
+                                <div class="option-text">D. デザイン作成の効率化、素材生成など</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q5: あなたの1日のPC使用時間はどれくらいですか？ -->
+                    <div class="question-slide" id="q5">
+                        <h2>Q5: あなたの1日のPC使用時間はどれくらいですか？</h2>
+                        <div class="options-grid">
+                            <div class="option" data-value="all_day_pc">
+                                <div class="option-icon">💻</div>
+                                <div class="option-text">A. 8時間以上</div>
+                            </div>
+                            <div class="option" data-value="6_8_hours_dev">
+                                <div class="option-icon">👨‍💻</div>
+                                <div class="option-text">B. 5～8時間くらい</div>
+                            </div>
+                            <div class="option" data-value="few_hours_on_site">
+                                <div class="option-icon">🚶‍♀️</div>
+                                <div class="option-text">C. 5時間以下</div>
+                            </div>
+                            <div class="option" data-value="less_digital">
+                                <div class="option-icon">📠</div>
+                                <div class="option-text">D. PCやデジタルツールはほとんど使用しない</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="prevBtn" class="nav-btn" disabled>前へ</button>
+                </div>
+            </div>
+
+            <div id="resultSection" class="section">
+                <div class="result-header">
+                    <h2>診断結果</h2>
+                    <div class="result-summary">
+                        <div class="time-saved-container">
+                            <div class="time-saved-label">生成AI活用で月間</div>
+                            <div class="time-saved-value"><span id="totalTimeSaved">0</span>時間</div>
+                            <div class="time-saved-label">の短縮が可能です</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-details">
+                    <div class="use-cases">
+                        <h3>あなたの職種・業務スタイルにおすすめの活用事例</h3>
+                        <div id="useCasesList" class="use-cases-list">
+                            <!-- 活用事例が動的に挿入される -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <a href="https://thousand-ventures.jp/" id="restartBtn" class="restart-btn" target="_blank" rel="noopener noreferrer">爆速AIの詳細確認をする</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 生成AI活用 業務時間短縮診断ツール</p>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
