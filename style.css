@@ -421,6 +421,29 @@ header h1 {
     filter: brightness(0.9); /* 少し暗くなる */
 }
 
+/* アイコンを囲む白い丸のスタイル */
+.icon-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;  /* 丸のサイズ */
+    height: 32px; /* 丸のサイズ */
+    background-color: white;
+    border-radius: 50%; /* 正円にする */
+}
+
+/* アイコン(SVG)自体のスタイル */
+.icon-arrow svg {
+    width: 18px; /* 矢印のサイズ */
+    height: 18px; /* 矢印のサイズ */
+    stroke: var(--secondary-color); /* 矢印の色をボタンのオレンジ色にする */
+}
+
+.btn-text {
+    /* テキスト用のスタイルが必要な場合はここに追加 */
+    line-height: 1; /* 行の高さを調整 */
+}
+
 /* ... */
 .restart-btn {
     background-color: var(--secondary-color); /* オレンジ */
