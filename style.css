@@ -392,7 +392,7 @@ header h1 {
     /* 枠線を少し暗い色にして輪郭をはっきりさせる */
     border-bottom: 4px solid #d97400; 
     border-radius: 10px; /* 角を少し丸くする */
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-weight: 700; /* 文字を少し太くする */
     cursor: pointer;
     transition: all 0.15s ease-out; /* トランジションを調整 */
@@ -403,7 +403,7 @@ header h1 {
     color: white;
     /* 影は一旦なくすか、ごく薄くする */
     box-shadow: none;
-    min-width: 400px;
+    min-width: 500px;
     justify-content: center;
 }
 
