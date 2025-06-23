@@ -378,43 +378,53 @@ header h1 {
 
 /* --- 結果アクションボタン --- */
 .result-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
+    /* ... */
 }
 
 .share-btn,
 .restart-btn {
-    padding: 0.8rem 1.8rem;
+    padding: 1rem 2.2rem;
     border: none;
-    border-radius: var(--border-radius-md);
-    font-size: 2.0rem;
-    font-weight: 600;
+    /* 枠線を少し暗い色にして輪郭をはっきりさせる */
+    border-bottom: 4px solid #d97400; 
+    border-radius: 10px; /* 角を少し丸くする */
+    font-size: 1.05rem;
+    font-weight: 700; /* 文字を少し太くする */
     cursor: pointer;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    transition: all 0.15s ease-out; /* トランジションを調整 */
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
     text-decoration: none;
     color: white;
-    box-shadow: var(--shadow-sm);
+    /* 影は一旦なくすか、ごく薄くする */
+    box-shadow: none;
 }
 
 .share-btn:hover,
 .restart-btn:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    /* マウスを乗せると少し明るく、上に移動 */
+    filter: brightness(1.1);
+    transform: translateY(-3px);
+    border-bottom-width: 6px; /* 下の線を太くして浮き上がったように見せる */
 }
 
-.share-btn {
-    background-color: #1DA1F2;
-    /* Twitter Blue */
+/* ★クリックした瞬間のスタイルを追加 */
+.share-btn:active,
+.restart-btn:active {
+    transform: translateY(1px); /* ボタンが少し沈む */
+    border-bottom-width: 2px; /* 下の線が細くなり、押し込まれたように見える */
+    filter: brightness(0.9); /* 少し暗くなる */
 }
 
-.share-btn:hover {
-    background-color: #0c85d0;
+/* ... */
+.restart-btn {
+    background-color: var(--secondary-color); /* オレンジ */
+}
+
+/* restart-btnのホバー時の背景色変更は不要になるので削除またはコメントアウト */
+/* .restart-btn:hover {
+    background-color: #e67e00;
 }
 
 .share-btn svg {
