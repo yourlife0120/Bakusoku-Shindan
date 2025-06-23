@@ -403,7 +403,6 @@ header h1 {
     color: white;
     /* 影は一旦なくすか、ごく薄くする */
     box-shadow: none;
-    min-width: 500px;
     justify-content: center;
 }
 
@@ -518,6 +517,7 @@ footer {
         width: 100%;
         justify-content: center;
         box-sizing: border-box;
+        min-width: 0;
     }
 
     .use-case-item {
