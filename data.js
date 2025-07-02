@@ -260,9 +260,9 @@ const useCasesData = [
     },
     {
         id: "list_creation_scraping",
-        description: "リストの作成（Webからの情報抽出）",
+        description: "リストの作成",
         timeSaved: 1.25,
-        details: "Webページから特定の情報（企業名、住所など）を抽出し、表形式でリスト化（スクレイピングの代替）。",
+        details: "Excelのリスト作成をChat-GPTに支援してもらう。",
         targetJobs: "一般事務, 営業, 営業事務, ITサポート・ヘルプデスク, データ入力, リサーチャー",
         applicableMainClusters: mapJobsToMainCluster("一般事務, 営業, 営業事務, ITサポート・ヘルプデスク, データ入力, リサーチャー"),
         subClusters: {
@@ -286,9 +286,9 @@ const useCasesData = [
     },
     {
         id: "diagram_creation_assist",
-        description: "図の作成支援（図解、イラスト生成）",
+        description: "図の作成支援（図解）",
         timeSaved: 0.85,
-        details: "資料に挿入するための図解やイラストを生成（Claude, V0, Napkin AIなどを活用）。",
+        details: "資料に挿入するための図解やイラストを生成（Napkin AIなどを活用）。",
         targetJobs: "広報, 経営企画, 研究者, Webデザイナー, 教育カウンセラー, 商品企画",
         applicableMainClusters: mapJobsToMainCluster("広報, 経営企画, 研究者, Webデザイナー, 教育カウンセラー, 商品企画"),
         subClusters: {
@@ -442,9 +442,9 @@ const useCasesData = [
     },
     {
         id: "long_text_summary_gemini",
-        description: "長文要約（Google Gemini活用）",
+        description: "長文要約）",
         timeSaved: 0.65,
-        details: "大量のテキスト情報を短時間で理解しやすいように要約（特にGoogle Geminiを活用）。",
+        details: "大量のテキスト情報を短時間で理解しやすいように要約。",
         targetJobs: "教員, 研究者, 広報, Webマーケティング",
         applicableMainClusters: mapJobsToMainCluster("教員, 研究者, 広報, Webマーケティング"),
         subClusters: {
@@ -468,9 +468,9 @@ const useCasesData = [
     },
     {
         id: "audio_transcription_gemini_tldv",
-        description: "録音の文字起こし（Gemini, tldvなど活用）",
+        description: "録音の文字起こし（Geminiなど活用）",
         timeSaved: 1.35,
-        details: "会議の録音やYouTube動画のデータからテキストを生成し、議事録作成やブログ記事の元データとして活用（Gemini, tldvなどを活用）。",
+        details: "会議の録音やYouTube動画のデータからテキストを生成し、議事録作成やブログ記事の元データとして活用（Geminiなどを活用）。",
         targetJobs: "教員, 経営企画, 広報, 医師",
         applicableMainClusters: mapJobsToMainCluster("教員, 経営企画, 広報, 医師"),
         subClusters: {
